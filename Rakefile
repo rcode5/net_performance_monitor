@@ -13,3 +13,5 @@ rescue Exception => ex
   puts "Exception: #{ex}"
   puts 'Failed to include RSpec rake tasks - should be ok for production environments'
 end
+
+Dir.glob('lib/tasks/*.rake').each { |r| import r }
