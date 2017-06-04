@@ -1,0 +1,10 @@
+*~
+\#*
+.#*
+.env.*
+*.orig
+.DS_Store
+.bundle
+tmp
+log
+.byebug_history
