@@ -6,15 +6,14 @@ require 'fileutils'
 require 'tempfile'
 
 describe FileWriter do
-
   let(:filename) { Tempfile.new.path }
 
   subject(:service) { described_class.new(filename) }
 
   describe '.new' do
     it 'requires filename' do
-      expect{ described_class.new(nil) }.to raise_error FileWriter::InvalidFilename
-      expect{ described_class.new('') }.to raise_error FileWriter::InvalidFilename
+      expect { described_class.new(nil) }.to raise_error FileWriter::InvalidFilename
+      expect { described_class.new('') }.to raise_error FileWriter::InvalidFilename
     end
   end
 

@@ -27,6 +27,7 @@ class S3Service
   end
 
   private
+
   def get_object(key)
     @client.get_object(s3_params(key: key))
   end
@@ -41,5 +42,4 @@ class S3Service
       ENV.fetch('AWS_SECRET_ACCESS_KEY')
     )
   end
-
 end

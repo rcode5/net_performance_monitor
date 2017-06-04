@@ -1,9 +1,9 @@
+# frozen_string_literal: true
 class FileWriter
-
   class InvalidFilename < StandardError; end
 
   def initialize(filename)
-    raise InvalidFilename.new("Filename is required") if filename.nil? || filename.empty?
+    raise InvalidFilename, 'Filename is required' if filename.nil? || filename.empty?
     @filename = filename
   end
 

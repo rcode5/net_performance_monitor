@@ -13,13 +13,15 @@ DEFAULT_AWS_REGION = 'us-east-1'
 
 output_filename = "speedtest_#{Time.now.to_i}.json"
 class Options
+  # rubocop:disable Metrics/MethodLength
   def self.build_summary(opts)
-    opts.separator 'One time recording of the network speed using `speedtest-cli` which must'
-    opts.separator 'be installed on your machine.  Results will be sent to STDOUT or to a file either'
-    opts.separator 'locally or in an S3 Bucket (see option --output).'
+    opts.separator 'One time recording of the network speed using `speedtest-cli`'
+    opts.separator 'which must be installed on your machine (try: `pip install speedtest-cli`).'
+    opts.separator 'Results will be sent to STDOUT or to a file either locally or in an '
+    opts.separator 'S3 Bucket (see option --output).'
     opts.separator ''
-    opts.separator 'If the result is sent to a file, the filename will be #{output_filename} where the'
-    opts.separator 'number is the current timestamp in seconds.'
+    opts.separator "If the result is sent to a file, the filename will be #{output_filename}"
+    opts.separator 'where the number is the current timestamp in seconds.'
     opts.separator ''
     opts.separator 'If you plan to use S3, please make sure you have set the following environment'
     opts.separator 'variables to allow access:'
@@ -31,7 +33,8 @@ class Options
   end
 
   def self.build_opts(opts, options)
-    opts.on('-O', '--output OUTPUT', '"file" or "s3" to output results to a file, or a file on S3 (defaults to STDOUT)') do |output|
+    opts.on('-O', '--output OUTPUT', '"file" or "s3" to output results to a file,' \
+            'or a file on S3 (defaults to STDOUT)') do |output|
       options.output = output.downcase
     end
 
@@ -43,7 +46,8 @@ class Options
       options.bucket = bucket
     end
 
-    opts.on('-s', '--speedtest [SPEEDTEST_BINARY]', "speedtest binary file (default: #{SPEEDTEST}") do |speedtest|
+    opts.on('-s', '--speedtest [SPEEDTEST_BINARY]',
+            "speedtest binary file (default: #{SPEEDTEST}") do |speedtest|
       options.speedtest = speedtest
     end
 
@@ -57,6 +61,7 @@ class Options
     end
     options
   end
+  # rubocop:enable Metrics/MethodLength
 
   def self.parse(args)
     options = OpenStruct.new(speedtest: SPEEDTEST, verbose: false)
@@ -77,8 +82,8 @@ end
 options = Options.parse(ARGV)
 
 puts options.inspect
-puts "Running speed test..."
+puts 'Running speed test...'
 result = Recorder.new(speedtest_bin: options.speedtest).execute
-puts "Writing result..."
+puts 'Writing result...'
 writer = Writer.new(options.output, bucket: options.bucket)
 writer.write(contents: result, directory: options.directory, filename: output_filename)

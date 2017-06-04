@@ -21,10 +21,9 @@ class Viewer < Sinatra::Base
 
   helpers do
     def protected!
-      unless authorized?
-        response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
-        throw(:halt, [401, "Not authorized\n"])
-      end
+      return if authorized?
+      response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
+      throw(:halt, [401, "Not authorized\n"])
     end
 
     def authorized?

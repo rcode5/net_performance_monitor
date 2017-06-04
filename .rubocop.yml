@@ -13,6 +13,12 @@ AllCops:
     - tmp/**/*
     - log/**/*
     - Rakefile
+Lint/HandleExceptions:
+  Exclude:
+    - 'spec/support/**/*'
+Lint/RescueException:
+  Exclude:
+    - 'spec/support/**/*'
 Metrics/LineLength:
   Max: 100
 Metrics/MethodLength:
