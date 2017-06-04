@@ -40,7 +40,7 @@ class S3Service
 
   private
 
-  def params(options = nil)
+  def s3_params(options = nil)
     { bucket: @bucket }.merge(options || {})
   end
 end

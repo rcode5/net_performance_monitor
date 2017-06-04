@@ -7,6 +7,7 @@ gem 'rake'
 gem 'sinatra'
 
 group :development, :test do
+  gem 'byebug'
   gem 'rspec'
   gem 'rubocop'
 end
