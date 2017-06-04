@@ -19,16 +19,20 @@ class S3Service
   end
 
   def get(key)
-    @client.get_object(s3_params(key: key))
-  end
-
-  def get_contents(key)
-    obj = @client.get_object(s3_params(key: key))
-    obj.body.read if obj
+    get_object(key).body.read
   end
 
   def put(fname, contents)
     @client.put_object(s3_params(key: fname, body: contents))
+  end
+
+  private
+  def get_object(key)
+    @client.get_object(s3_params(key: key))
+  end
+
+  def s3_params(options = nil)
+    { bucket: @bucket }.merge(options || {})
   end
 
   def credentials
@@ -38,9 +42,4 @@ class S3Service
     )
   end
 
-  private
-
-  def s3_params(options = nil)
-    { bucket: @bucket }.merge(options || {})
-  end
 end

@@ -59,6 +59,7 @@ DEPENDENCIES
   byebug
   rake
   rspec
+  rspec-mocks
   rubocop
   sinatra
 
