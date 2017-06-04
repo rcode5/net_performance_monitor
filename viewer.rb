@@ -1,12 +1,13 @@
+# frozen_string_literal: true
 begin
   require 'byebug'
 rescue LoadError => ex
-  puts "Failed to load some development gems."
+  puts 'Failed to load some development gems.'
   puts ex
 end
 
 require 'sinatra'
-#require 'sinatra/static_assets'
+# require 'sinatra/static_assets'
 require 'sinatra/contrib'
 require 'json'
 
@@ -27,14 +28,14 @@ class Viewer < Sinatra::Base
     end
 
     def authorized?
-      @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+      @auth ||= Rack::Auth::Basic::Request.new(request.env)
       user = ENV['BASIC_AUTH_USER'] || gen_random_string
       pass = ENV['BASIC_AUTH_PASS'] || gen_random_string
-      @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == [user,pass]
+      @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == [user, pass]
     end
   end
 
   get '/' do
-    @title = "Network Report"
+    @title = 'Network Report'
   end
 end
