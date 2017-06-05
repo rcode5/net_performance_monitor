@@ -1,6 +1,13 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'bundler/inline'
+
+gemfile(true) do
+  source 'https://rubygems.org'
+  gem 'aws-sdk', '~> 2'
+end
+
 require 'fileutils'
 require 'optparse'
 require 'aws-sdk'

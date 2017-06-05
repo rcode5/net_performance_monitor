@@ -3,8 +3,6 @@ require 'fileutils'
 require_relative 'file_writer'
 require_relative 's3_writer'
 
-require 'byebug'
-
 class Writer
   def initialize(type, bucket: nil)
     @type = type
