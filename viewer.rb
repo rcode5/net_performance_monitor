@@ -43,10 +43,7 @@ class Viewer < Sinatra::Base
   end
 
   get '/' do
-    @title = 'Network Report'
-    s3_client = S3Service.new bucket: ENV.fetch('AWS_BUCKET'), region: ENV.fetch('AWS_REGION')
-    @files = s3_client.files.map { |f| "<li><a href='/file/#{f}'>#{f}</a></li>" }.join
-    "<ul>#{@files}</ul>"
+    redirect '/index.html'
   end
 
   get '/files/' do
