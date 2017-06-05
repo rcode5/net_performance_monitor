@@ -20,7 +20,8 @@ class Options
     opts.separator 'S3 Bucket (see option --output).'
     opts.separator ''
     opts.separator 'If the result is sent to a file (locally or S3), the filename will be in'
-    opts.separator 'the format "speedtest_#####.json" where the number is the current time in seconds.'
+    opts.separator 'the format "speedtest_#####.json" where the number is the current time in'
+    opts.separator 'seconds.'
     opts.separator ''
     opts.separator 'If you plan to use S3, please make sure you have set the following environment'
     opts.separator 'variables to allow access:'
@@ -63,7 +64,9 @@ class Options
   # rubocop:enable Metrics/MethodLength
 
   def self.parse(args)
-    options = OpenStruct.new(speedtest: SPEEDTEST, verbose: false, output_filename: "speedtest_#{Time.now.to_i}.json")
+    options = OpenStruct.new(speedtest: SPEEDTEST,
+                             verbose: false,
+                             output_filename: "speedtest_#{Time.now.to_i}.json")
     parser = OptionParser.new do |opts|
       opts.banner = "Usage: #{opts.program_name} [options]"
       opts.separator ''

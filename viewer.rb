@@ -16,7 +16,7 @@ ROOT_DIR = File.dirname(__FILE__)
 Dir.glob(File.join(ROOT_DIR, 'lib/services/*.rb')).each { |f| require f }
 
 class Viewer < Sinatra::Base
-  #register Sinatra::StaticAssets
+  # register Sinatra::StaticAssets
 
   set :environment, :production
   set :logging, true
@@ -47,7 +47,6 @@ class Viewer < Sinatra::Base
     s3_client = S3Service.new bucket: ENV.fetch('AWS_BUCKET'), region: ENV.fetch('AWS_REGION')
     @files = s3_client.files.map { |f| "<li><a href='/file/#{f}'>#{f}</a></li>" }.join
     "<ul>#{@files}</ul>"
-
   end
 
   get '/files/' do
@@ -60,5 +59,4 @@ class Viewer < Sinatra::Base
     content_type :json
     s3.get(params[:splat].first)
   end
-
 end
