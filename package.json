@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --content-base lib/app/views --hot --inline",
-    "build": "webpack --config config/webpack.prod.config.js",
+    "build": "webpack --config webpack.prod.config.js",
     "lint": "eslint src/**",
     "lint:watch": "esw -w src/**",
     "test": "mocha --compilers js:babel-core/register ./test/**/*.spec.js --require ignore-styles"

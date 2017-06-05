@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    './src/index'
+    './javascript/index'
   ],
   module: {
     loaders: [
@@ -15,12 +15,12 @@ module.exports = {
     extensions: ['.js','.scss']
   },
   output: {
-    path: path.join(__dirname, '/lib/app/public'),
+    path: path.join(__dirname, '/public'),
     filename: 'bundle.js'
   },
   devtool: 'cheap-eval-source-map',
   devServer: {
-    contentBase: './lib/app/views/',
+    contentBase: './javascript/app/',
     hot: true
   },
   plugins: [
