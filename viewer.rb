@@ -8,16 +8,24 @@ end
 
 require 'sinatra'
 # require 'sinatra/static_assets'
-require 'sinatra/contrib'
+# require 'sinatra/contrib'
 require 'json'
 
+ROOT_DIR = File.dirname(__FILE__)
+
+Dir.glob(File.join(ROOT_DIR, 'lib/services/*.rb')).each { |f| require f }
+
 class Viewer < Sinatra::Base
-  register Sinatra::StaticAssets
+  #register Sinatra::StaticAssets
 
   set :environment, :production
   set :logging, true
-  set :root, File.dirname(__FILE__)
+  set :root, ROOT_DIR
   APP_ROOT = root
+
+  def s3
+    @s3 ||= S3Service.new bucket: ENV.fetch('AWS_BUCKET'), region: ENV.fetch('AWS_REGION')
+  end
 
   helpers do
     def protected!
@@ -36,5 +44,21 @@ class Viewer < Sinatra::Base
 
   get '/' do
     @title = 'Network Report'
+    s3_client = S3Service.new bucket: ENV.fetch('AWS_BUCKET'), region: ENV.fetch('AWS_REGION')
+    @files = s3_client.files.map { |f| "<li><a href='/file/#{f}'>#{f}</a></li>" }.join
+    "<ul>#{@files}</ul>"
+
   end
+
+  get '/files/' do
+    content_type :json
+    @title = 'Network Report'
+    s3.files.to_json
+  end
+
+  get '/file/*' do
+    content_type :json
+    s3.get(params[:splat].first)
+  end
+
 end

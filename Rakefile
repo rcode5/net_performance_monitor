@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 desc 'run the server'
 task :run do |_t|
-  require File.join(File.dirname(__FILE__), 'viewer.rp')
+  require File.join(File.dirname(__FILE__), 'viewer.rb')
   Viewer.run!
 end
 
