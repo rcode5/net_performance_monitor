@@ -10,3 +10,4 @@ config/cron_environment.sh
 tmp
 log
 .byebug_history
+*.hot-update.js*
