@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "webpack-dev-server --content-base lib/app/views --hot --inline",
     "build": "webpack --config webpack.prod.config.js",
-    "lint": "eslint src/**",
-    "lint:watch": "esw -w src/**",
-    "test": "mocha --compilers js:babel-core/register ./test/**/*.spec.js --require ignore-styles"
+    "lint": "eslint javascript/**",
+    "lint-fix": "eslint --fix 'javascript/**/*.{js,jsx}'",
+    "lint:watch": "esw -w javascript/**",
+    "test": "mocha --compilers js:babel-core/register ./javascript/**/*[Tt]est.js? --require ignore-styles"
   },
   "author": "",
   "license": "MIT",
@@ -26,6 +27,8 @@
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3"
