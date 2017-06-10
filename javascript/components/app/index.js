@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import NetworkSpeedGraph from './components/networkSpeedGraph/';
+import NetworkSpeedGraph from '../networkSpeedGraph';
 const App = (_props) => (
   <div className="main-container">
     <div className="main wrapper clearfix">

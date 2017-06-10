@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class NetworkSpeedGraph extends Component {
 
-  render() (<div>graph goes here {this.props.networkData.data}</div>)
+  render() {
+    return <div>graph goes here {this.props.networkData.data}</div>;
+  }
 
 }
 
-EditMember.propTypes = {
-  updateMember: PropTypes.func.isRequired,
-  cloudinaryConfig: PropTypes.object.isRequired,
-  member: PropTypes.object.isRequired,
-  countries: PropTypes.array.isRequired,
-  token: PropTypes.string.isRequired,
-  errors: PropTypes.object.isRequired,
-  success: PropTypes.string.isRequired
+NetworkSpeedGraph.propTypes = {
+  networkData: PropTypes.object
 };
 
 const mapStateToProps = state => ({
