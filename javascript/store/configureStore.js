@@ -7,8 +7,8 @@ export default function configureStore(initialState) {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware];
 
-  // const { createLogger } = require('redux-logger');
-  // middlewares.push(createLogger());
+  const { createLogger } = require('redux-logger');
+  middlewares.push(createLogger());
 
   const store = createStore(
     reducers,

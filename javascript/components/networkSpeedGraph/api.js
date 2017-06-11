@@ -1,3 +1,8 @@
+import axios from 'axios';
+
+import { get } from '../../services/api.js';
+
 export default {
-  load: () => {}
+  index: () => get('/api/files/'),
+  show: (file) => get(`/api/file/${file}`)
 };

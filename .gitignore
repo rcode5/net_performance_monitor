@@ -11,3 +11,6 @@ tmp
 log
 .byebug_history
 *.hot-update.js*
+
+.env*
+env.sh

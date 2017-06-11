@@ -9,4 +9,4 @@ require ::File.join(root, 'viewer')
 # setup static serving
 use Rack::Static, urls: ['/images', '/stylesheets', '/javascripts'], root: File.join(root, 'public')
 
-run Viewer.new
+run NetworkSpeedGrapher::Viewer.new

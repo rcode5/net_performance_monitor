@@ -1,15 +1,15 @@
 import {
   LOAD_SUCCESS
-} from '../actions';
+} from '../actions/file';
 
 const defaultState = {
-  networkData: { data: [] }
+  data: []
 };
 
 export default function (state = defaultState, action) {
   switch (action.type) {
   case LOAD_SUCCESS:
-    return Object.assign({}, state, action.data);
+    return Object.assign({}, state, { data: action.data });
   default:
     return state;
   }

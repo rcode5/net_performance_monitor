@@ -7,6 +7,8 @@ rescue LoadError => ex
 end
 
 require 'sinatra'
+require_relative 'lib/app/api'
+
 # require 'sinatra/static_assets'
 # require 'sinatra/contrib'
 require 'json'
@@ -15,45 +17,40 @@ ROOT_DIR = File.dirname(__FILE__)
 
 Dir.glob(File.join(ROOT_DIR, 'lib/services/*.rb')).each { |f| require f }
 
-class Viewer < Sinatra::Base
-  # register Sinatra::StaticAssets
+module NetworkSpeedGrapher
+  class Viewer < Sinatra::Base
 
-  set :environment, :production
-  set :logging, true
-  set :root, ROOT_DIR
-  APP_ROOT = root
+    include NetworkSpeedGrapher::Api
+    # register Sinatra::StaticAssets
 
-  def s3
-    @s3 ||= S3Service.new bucket: ENV.fetch('AWS_BUCKET'), region: ENV.fetch('AWS_REGION')
-  end
+    set :environment, :production
+    set :logging, true
+    set :root, ROOT_DIR
+    APP_ROOT = root
 
-  helpers do
-    def protected!
-      return if authorized?
-      response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
-      throw(:halt, [401, "Not authorized\n"])
+    def s3
+      @s3 ||= S3Service.new bucket: ENV.fetch('AWS_BUCKET'), region: ENV.fetch('AWS_REGION')
     end
 
-    def authorized?
-      @auth ||= Rack::Auth::Basic::Request.new(request.env)
-      user = ENV['BASIC_AUTH_USER'] || gen_random_string
-      pass = ENV['BASIC_AUTH_PASS'] || gen_random_string
-      @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == [user, pass]
+    helpers do
+      def protected!
+        return if authorized?
+        response['WWW-Authenticate'] = %(Basic realm="Restricted Area")
+        throw(:halt, [401, "Not authorized\n"])
+      end
+
+      def authorized?
+        @auth ||= Rack::Auth::Basic::Request.new(request.env)
+        user = ENV['BASIC_AUTH_USER'] || gen_random_string
+        pass = ENV['BASIC_AUTH_PASS'] || gen_random_string
+        @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == [user, pass]
+      end
     end
+
+    get '/' do
+      redirect '/index.html'
+    end
+
   end
 
-  get '/' do
-    redirect '/index.html'
-  end
-
-  get '/files/' do
-    content_type :json
-    @title = 'Network Report'
-    s3.files.to_json
-  end
-
-  get '/file/*' do
-    content_type :json
-    s3.get(params[:splat].first)
-  end
 end

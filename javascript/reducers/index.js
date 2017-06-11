@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import networkData from '../components/networkSpeedGraph/reducers';
+import files from '../components/networkSpeedGraph/reducers/files';
+import file from '../components/networkSpeedGraph/reducers/file';
 
 export default combineReducers({
-  networkData
+  files,
+  file
 });

@@ -2,7 +2,7 @@
 desc 'run the server'
 task :run do |_t|
   require File.join(File.dirname(__FILE__), 'viewer.rb')
-  Viewer.run!
+  NetworkSpeedGrapher::Viewer.run!
 end
 
 begin
