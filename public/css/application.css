@@ -165,6 +165,18 @@ nav a:hover {
   background-size: contain;
 }
 
+.graph {
+  margin: auto auto 120px auto;
+}
+
+.graph .rv-xy-plot {
+  margin: auto;
+}
+
+.graph .rv-xy-plot__inner {
+  overflow: visible;
+}
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
