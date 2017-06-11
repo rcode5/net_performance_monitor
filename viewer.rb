@@ -7,9 +7,9 @@ rescue LoadError => ex
 end
 
 require 'sinatra'
+#require 'sinatra/static_assets'
 require_relative 'lib/app/api'
 
-# require 'sinatra/static_assets'
 # require 'sinatra/contrib'
 require 'json'
 
@@ -20,8 +20,10 @@ Dir.glob(File.join(ROOT_DIR, 'lib/services/*.rb')).each { |f| require f }
 module NetworkSpeedGrapher
   class Viewer < Sinatra::Base
 
+    set :public_folder, 'public'
+
     include NetworkSpeedGrapher::Api
-    # register Sinatra::StaticAssets
+    #register Sinatra::StaticAssets
 
     set :environment, :production
     set :logging, true
