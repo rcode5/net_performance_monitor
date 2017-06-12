@@ -1,4 +1,7 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+@import 'layout.css';
+@import 'graph.css';
+@import 'buttons.css';
 
 html {
   color: #222;
@@ -126,55 +129,6 @@ nav a:hover {
 
 .ie7 .title {
   padding-top: 20px;
-}
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-.header-container {
-  border-bottom: 20px solid powderblue;
-}
-
-.footer-container,
-.main aside {
-  border-top: 20px solid blue;
-}
-
-.header-container,
-.footer-container,
-.main aside {
-  background: lightsteelblue;
-}
-
-.title {
-  color: white;
-}
-
-.header__title {
-  color: white;
-}
-
-.loader {
-  width: 200px;
-  height: 200px;
-  margin: 40px auto;
-  background-image: url('/img/tail-spin.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.graph {
-  margin: auto auto 120px auto;
-}
-
-.graph .rv-xy-plot {
-  margin: auto;
-}
-
-.graph .rv-xy-plot__inner {
-  overflow: visible;
 }
 
 /* ==========================================================================

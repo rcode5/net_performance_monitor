@@ -15,8 +15,8 @@ import moment from 'moment';
 import { has, pick, isUndefined } from 'lodash';
 
 const DEFAULT_ATTRS = {
-  upload_title: 'Upload in MB/s',
-  download_title: 'Download MB/s',
+  upload_title: 'Up (MBit/s)',
+  download_title: 'Down (MBit/s)',
   ping_title: 'Ping (ms)',
   bytes_sent_title: 'Bytes Sent (MB)',
   bytes_received_title: 'Bytes Rcvd (MB)'

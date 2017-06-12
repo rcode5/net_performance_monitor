@@ -1,0 +1,32 @@
+.header-container {
+  border-bottom: 20px solid powderblue;
+}
+
+.footer-container,
+.main aside {
+  border-top: 20px solid blue;
+}
+
+.header-container,
+.footer-container,
+.main aside {
+  background: lightsteelblue;
+}
+
+.title {
+  color: white;
+}
+
+.header__title {
+  color: white;
+}
+
+.loader {
+  width: 200px;
+  height: 200px;
+  margin: 40px auto;
+  background-image: url('/img/tail-spin.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}

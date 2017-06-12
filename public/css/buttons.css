@@ -1,0 +1,82 @@
+.button {
+  display: flex;
+  overflow: hidden;
+
+  margin: 10px;
+  padding: 12px 12px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 60ms ease-in-out;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;
+}
+
+.button:hover {
+  transition: all 60ms ease;
+
+  opacity: .85;
+}
+
+.button:active {
+  transition: all 60ms ease;
+  opacity: .75;
+}
+
+.button:focus {
+  outline: 1px dotted #959595;
+  outline-offset: -4px;
+}
+
+
+.button.-dark {
+  color: #333030;
+  background: snow;
+}
+
+.button.-dark[disabled] {
+  color: #606060;
+  background-color: #999a9a;
+}
+
+.button.-dark[disabled]:focus,
+.button.-dark[disabled]:hover,
+.button.-dark[disabled]:active {
+  color: #606060;
+  background-color: #999a9a;
+}
+
+.button.-dark:focus {
+  outline: 1px dotted white;
+  outline-offset: -4px;
+}
+
+.button.-dark:hover {
+  color: #222020;
+  background-color: white;
+  opacity: 1;
+}
+
+.button.-dark:active {
+  color: #999a9a;
+  opacity: 1;
+}
