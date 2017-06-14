@@ -4,5 +4,5 @@ import { get } from '../../services/api.js';
 
 export default {
   index: () => get('/api/files/'),
-  show: (file) => get(`/api/file/${file}`)
+  show: (file) => get(file)
 };

@@ -18,12 +18,22 @@ class S3Service
     @files.uniq.flatten
   end
 
+  def urls
+    @files = []
+
+    @client.list_objects(s3_params).each do |resp|
+      @files << resp.contents.map{|obj| Aws::S3::Object.new(@bucket, obj.key)}
+    end
+
+    @files.flatten.map(&:public_url).uniq
+  end
+
   def get(key)
     get_object(key).body.read
   end
 
   def put(fname, contents)
-    @client.put_object(s3_params(key: fname, body: contents))
+    @client.put_object(s3_params(key: fname, body: contents, acl: 'public-read'))
   end
 
   private

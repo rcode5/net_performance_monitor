@@ -30,10 +30,6 @@ module NetworkSpeedGrapher
     set :root, ROOT_DIR
     APP_ROOT = root
 
-    def s3
-      @s3 ||= S3Service.new bucket: ENV.fetch('AWS_BUCKET'), region: ENV.fetch('AWS_REGION')
-    end
-
     helpers do
       def protected!
         return if authorized?
