@@ -26,8 +26,23 @@ This runs the script every 30 minutes (assuming you're using `rbenv` for your ru
 
 # Running the server
 
-`rackup`
+`foreman start -f Procfile.dev`
 
+For the server to work with the S3 bucket, you must enable CORS on that bucket.  See  http://docs.aws.amazon.com/AmazonS3/latest/user-guide/add-cors-configuration.html
+
+Your configuration should look something like
+
+``
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <MaxAgeSeconds>3000</MaxAgeSeconds>
+    <AllowedHeader>*</AllowedHeader>
+  </CORSRule>
+</CORSConfiguration>
+```
 
 # Requirements
 
