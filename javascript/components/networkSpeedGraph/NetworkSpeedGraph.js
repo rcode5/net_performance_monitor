@@ -16,10 +16,9 @@ class NetworkSpeedGraph extends Component {
   render() {
     const { files, file } = this.props;
 
-    if (!(files.status !== 'ok') && (file.status !== 'ok')) {
+    if ((files.status == 'loading') || (file.status !== "ok")) {
       return <div className='loader'></div>;
     }
-
     const graphData = pick(file.data, files.data)
     if ( graphData && Object.keys(graphData).length ) {
       return (<div className='graphs'>

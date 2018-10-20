@@ -24,6 +24,8 @@ You can run it with `crontab` by updating your cron file to include something li
 
 This runs the script every 30 minutes (assuming you're using `rbenv` for your ruby version management).  Your mileage may vary.
 
+There is a sample file under `config/cron_environment.sh` 
+
 # Running the server
 
 `foreman start -f Procfile.dev`

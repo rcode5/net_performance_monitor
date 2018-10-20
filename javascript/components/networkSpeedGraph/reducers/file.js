@@ -1,5 +1,6 @@
 import { isObject } from 'lodash';
 import {
+  LOAD,
   LOAD_SUCCESS,
   ALL_FILES_LOADED,
 } from '../actions/file';
@@ -13,6 +14,9 @@ const isInvalid = (action) => !((action.filename && action.filename.length) && i
 
 export default function (state = defaultState, action) {
   switch (action.type) {
+  case LOAD:
+    return Object.assign({}, state, { data: [], status: "loading"})
+
   case LOAD_SUCCESS:
     if ( isInvalid(action) ) return state;
     const newData = Object.assign({}, state.data, {[action.filename]:action.data});
