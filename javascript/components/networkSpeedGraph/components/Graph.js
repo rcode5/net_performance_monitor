@@ -46,7 +46,7 @@ class Graph extends Component {
   }
 
   formatTimestampForGraph(ts) {
-    return moment.unix(ts).format("YYYY-MM-DD HH:mm");
+    return moment.unix(ts).format("MMM DD HH:mm Z");
   }
 
   resetZoom = () => this.setState({lastDrawLocation: null});
@@ -57,8 +57,6 @@ class Graph extends Component {
 
     const graphData = this.extractGraphData(data, parameter);
     const title = this.extractTitle(data, parameter);
-
-    console.log(graphData);
 
     return ( <div className='graph'>
       <FlexibleXYPlot

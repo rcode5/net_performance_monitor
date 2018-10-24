@@ -24,7 +24,8 @@ You can run it with `crontab` by updating your cron file to include something li
 
 This runs the script every 30 minutes (assuming you're using `rbenv` for your ruby version management).  Your mileage may vary.
 
-There is a sample file under `config/cron_environment.sh` 
+There is a sample file under `config/cron_environment.sh`.  You may notice that the `PATH` has been augmented.  In recent versions of MacOS, it seems that `md5` is in the `/sbin` directory so this path modification makes that available.  Your mileage may vary (read: may not need this).
+
 
 # Running the server
 
